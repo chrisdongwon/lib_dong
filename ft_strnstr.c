@@ -1,29 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cwon <cwon@student.42bangkok.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/28 15:35:12 by cwon              #+#    #+#             */
-/*   Updated: 2024/09/03 23:26:38 by cwon             ###   ########.fr       */
+/*   Created: 2024/09/04 01:14:01 by cwon              #+#    #+#             */
+/*   Updated: 2024/09/04 05:23:00 by cwon             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
+char	*ft_strnstr(const char *big, const char *little, size_t len)
 {
 	size_t	i;
+	size_t	j;
 
 	i = 0;
-	while (i < n && s1[i] && s2[i])
+	j = 0;
+	if (!little[j])
+		return ((char *)big);
+	while (i < len && big[i])
 	{
-		if (s1[i] != s2[i])
-			return (s1[i] - s2[i]);
+		while (i + j < len && big[i + j] && little[j] == big[i + j])
+		{
+			if (!little[++j])
+				return ((char *)(big + i));
+		}
 		i++;
+		j = 0;
 	}
-	if (i == n)
-		return (0);
-	return (s1[i] - s2[i]);
+	return (0);
 }

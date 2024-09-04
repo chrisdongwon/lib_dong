@@ -1,29 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cwon <cwon@student.42bangkok.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/28 15:35:12 by cwon              #+#    #+#             */
-/*   Updated: 2024/09/03 23:26:38 by cwon             ###   ########.fr       */
+/*   Created: 2024/09/04 05:26:49 by cwon              #+#    #+#             */
+/*   Updated: 2024/09/04 06:29:13 by cwon             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
+static int	is_whitespace(int c)
+{
+	return ((9 <= c && c <= 13) || (c == 32));
+}
+
+int	ft_atoi(const char *nptr)
 {
 	size_t	i;
+	int		sign;
+	int		result;
 
 	i = 0;
-	while (i < n && s1[i] && s2[i])
+	sign = 1;
+	result = 0;
+	while (is_whitespace(nptr[i]))
+		i++;
+	if (nptr[i] == '+' || nptr[i] == '-')
 	{
-		if (s1[i] != s2[i])
-			return (s1[i] - s2[i]);
+		if (nptr[i] == '-')
+			sign = -1;
 		i++;
 	}
-	if (i == n)
-		return (0);
-	return (s1[i] - s2[i]);
+	while (nptr[i] && ft_isdigit(nptr[i]))
+		result = (result * 10) + (nptr[i++] - '0');
+	return (sign * result);
 }

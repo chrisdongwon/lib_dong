@@ -6,14 +6,11 @@
 /*   By: cwon <cwon@student.42bangkok.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 18:43:22 by cwon              #+#    #+#             */
-/*   Updated: 2024/08/31 18:57:20 by cwon             ###   ########.fr       */
+/*   Updated: 2024/09/03 18:28:52 by cwon             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-// make sure to take care of the case when dest and src refer to the same
-// memory address using memmove
 
 void	*ft_memcpy(void *dest, const void *src, size_t n)
 {
