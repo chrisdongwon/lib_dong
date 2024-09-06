@@ -6,23 +6,37 @@
 #    By: cwon <cwon@student.42bangkok.com>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/03 16:52:39 by cwon              #+#    #+#              #
-#    Updated: 2024/09/06 02:05:18 by cwon             ###   ########.fr        #
+#    Updated: 2024/09/06 11:53:03 by cwon             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
+# suggested by the official GNU makefile documentation as conventions
+
+SHELL = /bin/sh
+
+.SUFFIXES:
+.SUFFIXES: .c .o
+
 # c files to compile
-CFILES = ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c ft_isprint.c \
-		 ft_strlen.c ft_memset.c ft_bzero.c ft_memcpy.c ft_memmove.c \
-		 ft_strlcpy.c ft_strlcat.c ft_toupper.c ft_tolower.c ft_strchr.c \
-		 ft_strrchr.c ft_strncmp.c ft_memchr.c ft_memcmp.c ft_strnstr.c \
-		 ft_atoi.c ft_calloc.c ft_strdup.c ft_substr.c ft_strtrim.c \
-		 ft_split.c ft_itoa.c ft_strmapi.c ft_striteri.c ft_putchar_fd.c \
-		 ft_putstr_fd.c ft_putendl_fd.c
+src = \
+	ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c ft_isprint.c \
+	ft_strlen.c ft_memset.c ft_bzero.c ft_memcpy.c ft_memmove.c \
+	ft_strlcpy.c ft_strlcat.c ft_toupper.c ft_tolower.c ft_strchr.c \
+	ft_strrchr.c ft_strncmp.c ft_memchr.c ft_memcmp.c ft_strnstr.c \
+	ft_atoi.c ft_calloc.c ft_strdup.c ft_substr.c ft_strtrim.c \
+	ft_split.c ft_itoa.c ft_strmapi.c ft_striteri.c ft_putchar_fd.c \
+	ft_putstr_fd.c ft_putendl_fd.c
+
+# bonus c files
+b-src = \
+	ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c \
+	ft_lstadd_back.c ft_lstdelone.c ft_lstclear.c ft_lstiter.c ft_lstmap.c
 
 # object files
 # variable declaration with substitution
-# CFILES will be the c files with extension changed to .o
-OFILES = $(CFILES:.c=.o)
+# files with extension .c changed to .o
+obj = $(src:.c=.o)
+b-obj = $(b-src:.c=.o)
 
 # compiler
 CC = cc
@@ -37,25 +51,30 @@ NAME = libft.a
 # target all
 # if library exists, clean first
 # else, compile then build library using ar command
-all: $(NAME) clean
+all: $(NAME)
 
 # use cc to compile c files and the object files.
 # % wildcard for pattern matching, * wildcard for name matching from shell
 # $< for first prerequisite, meaning c files in this case
 # $@ for the target name, so obj files in this case
-%.o: %.c libft.h Makefile
+# previously - %.o: %.c libft.h Makefile
+%.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
-# flags:
+# ar flags:
 # r for inserting files into archive,
 # c for creating archive,
 # s for indexing the files in the archive
-$(NAME): $(OFILES)
-	ar -rcs $(NAME) $(OFILES)
+$(NAME): $(obj)
+	ar -rcs $(NAME) $(obj)
+
+# $? for prerequisites newer than the target
+bonus: $(obj) $(b-obj)
+	ar -rcs $(NAME) $?
 
 # clean will remove object files
 clean:
-	rm -f $(OFILES)
+	rm -f $(obj)
 
 # fclean will remove object and c files
 fclean: clean 
@@ -66,4 +85,4 @@ re: fclean $(NAME)
 
 # if a target name happens to match a file name in the directory,
 # it removes so that the targets are interpreted correctly in the makefile
-.PHONY: all clean fclean re
+.PHONY: all bonus clean fclean re
