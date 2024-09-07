@@ -6,7 +6,7 @@
 /*   By: cwon <cwon@student.42bangkok.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 13:28:38 by cwon              #+#    #+#             */
-/*   Updated: 2024/09/03 19:43:42 by cwon             ###   ########.fr       */
+/*   Updated: 2024/09/07 18:50:57 by cwon             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,23 @@
 size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 {
 	size_t	src_len;
+	size_t	i;
+	size_t	n;
 
 	src_len = ft_strlen(src);
-	if (src_len <= size)
-		ft_memcpy(dst, src, src_len + 1);
-	else if (size--)
+	i = 0;
+	if (size)
 	{
-		ft_memcpy(dst, src, size);
-		dst[size] = 0;
+		if (size <= src_len)
+			n = size - 1;
+		else
+			n = src_len;
+		while (i < n)
+		{
+			dst[i] = src[i];
+			i++;
+		}
+		dst[i] = 0;
 	}
-	return (src_len);
+	return (ft_strlen(src));
 }

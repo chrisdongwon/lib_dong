@@ -6,7 +6,7 @@
 /*   By: cwon <cwon@student.42bangkok.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 08:07:14 by cwon              #+#    #+#             */
-/*   Updated: 2024/09/05 20:47:53 by cwon             ###   ########.fr       */
+/*   Updated: 2024/09/07 19:20:25 by cwon             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,10 @@ char	*ft_substr(const char *s, unsigned int start, size_t len)
 	size_t	total_len;
 	size_t	i;
 
-	ptr = (char *)malloc(len + 1);
+	if (len + 1)
+		ptr = (char *)malloc(len + 1);
+	else
+		return (0);
 	if (!s || !ptr)
 		return (0);
 	i = 0;

@@ -6,7 +6,7 @@
 /*   By: cwon <cwon@student.42bangkok.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 18:20:33 by cwon              #+#    #+#             */
-/*   Updated: 2024/09/03 17:52:27 by cwon             ###   ########.fr       */
+/*   Updated: 2024/09/07 14:45:38 by cwon             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,7 @@ void	ft_bzero(void *s, size_t n)
 {
 	unsigned char	*ptr;
 
-	if (s)
-	{
-		ptr = (unsigned char *)s;
-		while (n != 0)
-			ptr[--n] = '\0';
-	}
+	ptr = (unsigned char *)s;
+	while (n != 0)
+		ptr[--n] = '\0';
 }

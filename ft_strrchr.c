@@ -6,7 +6,7 @@
 /*   By: cwon <cwon@student.42bangkok.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 20:35:25 by cwon              #+#    #+#             */
-/*   Updated: 2024/09/03 23:09:16 by cwon             ###   ########.fr       */
+/*   Updated: 2024/09/07 16:25:02 by cwon             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@ char	*ft_strrchr(const char *s, int c)
 	i = ft_strlen(s);
 	while (i)
 	{
-		if (s[i] == c)
+		if (s[i] == (c % 128))
 			return ((char *)&s[i]);
 		i--;
 	}
-	if (s[i] == c)
+	if (s[i] == (c % 128))
 		return ((char *)&s[i]);
 	return (0);
 }

@@ -6,7 +6,7 @@
 #    By: cwon <cwon@student.42bangkok.com>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/03 16:52:39 by cwon              #+#    #+#              #
-#    Updated: 2024/09/06 11:53:03 by cwon             ###   ########.fr        #
+#    Updated: 2024/09/07 16:05:47 by cwon             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -72,9 +72,13 @@ $(NAME): $(obj)
 bonus: $(obj) $(b-obj)
 	ar -rcs $(NAME) $?
 
+so:
+	$(CC) -nostartfiles -fPIC $(CFLAGS) $(src)
+	gcc -nostartfiles -shared -o libft.so $(obj)
+
 # clean will remove object files
 clean:
-	rm -f $(obj)
+	rm -f $(obj) $(b-obj)
 
 # fclean will remove object and c files
 fclean: clean 

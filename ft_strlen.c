@@ -6,7 +6,7 @@
 /*   By: cwon <cwon@student.42bangkok.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 13:41:30 by cwon              #+#    #+#             */
-/*   Updated: 2024/08/31 17:29:54 by cwon             ###   ########.fr       */
+/*   Updated: 2024/09/07 15:04:33 by cwon             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ size_t	ft_strlen(const char *s)
 	size_t	length;
 
 	length = 0;
-	while (s && s[length])
+	while (s[length])
 		length++;
 	return (length);
 }

@@ -6,7 +6,7 @@
 /*   By: cwon <cwon@student.42bangkok.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 18:43:22 by cwon              #+#    #+#             */
-/*   Updated: 2024/09/05 20:51:27 by cwon             ###   ########.fr       */
+/*   Updated: 2024/09/07 14:51:23 by cwon             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void	*ft_memcpy(void *dest, const void *src, size_t n)
 	unsigned char	*ptr_s;
 	size_t			i;
 
+	if (!dest && !src)
+		return (0);
 	ptr_d = (unsigned char *)dest;
 	ptr_s = (unsigned char *)src;
 	i = 0;
