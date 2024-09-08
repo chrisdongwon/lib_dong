@@ -6,7 +6,7 @@
 /*   By: cwon <cwon@student.42bangkok.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 22:17:00 by cwon              #+#    #+#             */
-/*   Updated: 2024/09/06 00:43:01 by cwon             ###   ########.fr       */
+/*   Updated: 2024/09/08 17:23:48 by cwon             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,13 +56,14 @@ char	**ft_split(const char *s, char c)
 	size_t	start;
 
 	count = word_count(s, c);
-	result = ft_calloc(count + 1, sizeof(char *));
+	i = 0;
+	result = (char **)malloc((count + 1) * sizeof(char *));
 	if (result)
 	{
-		i = 0;
 		start = 0;
 		while (i < count)
 			result[i++] = extract(s, c, &start);
+		result[i] = 0;
 	}
 	return (result);
 }

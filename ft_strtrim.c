@@ -6,7 +6,7 @@
 /*   By: cwon <cwon@student.42bangkok.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 21:29:19 by cwon              #+#    #+#             */
-/*   Updated: 2024/09/05 22:15:46 by cwon             ###   ########.fr       */
+/*   Updated: 2024/09/08 15:37:46 by cwon             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ char	*ft_strtrim(const char *s1, const char *set)
 	size_t	start;
 	size_t	end;
 
+	if (!s1 || !set)
+		return (0);
 	start = 0;
 	end = ft_strlen(s1) - 1;
 	while (is_member(s1[start], set))
